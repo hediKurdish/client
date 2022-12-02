@@ -1,0 +1,52 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider Theme="@MyCustomTheme" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudRTLProvider RightToLeft>
+        <MudAppBar Style="background-color:#142850" Elevation="10">
+            <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Warning" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+            <div Class="d-flex justify-space-around flex-wrap mt-2">
+                <MudBadge Content="3" Overlap=true Class="mx-6 my-4">
+                    <MudIconButton Icon="@Icons.Material.Filled.ShoppingCart" Color="Color.Inherit" />
+                </MudBadge>
+            </div>
+            <MudSpacer />
+            <MudIconButton Icon="@Icons.Custom.Brands.Instagram" Color="Color.Warning" Link="https://www.instagram.com/hedi_azad/" Target="_blank" />
+            <MudIconButton Icon="@Icons.Custom.Brands.Facebook" Color="Color.Warning" Link="https://facebook.com/hedi.azad2002/" Target="_blank" />
+        </MudAppBar>
+        <MudDrawer Style="background-color:lavender" @bind-Open="_drawerOpen" Elevation="10">
+            <MudDrawerHeader>
+                <MudText Typo="Typo.h5" Color="Color.Dark">کوردستان ستۆر</MudText>
+            </MudDrawerHeader>
+            <NavMenu />
+        </MudDrawer>
+        <MudMainContent>
+            <MudContainer MaxWidth="MaxWidth.Large" Class="my-2 pt-1">
+                @Body
+            </MudContainer>
+        </MudMainContent>
+    </MudRTLProvider>
+</MudLayout>
+
+
+@code {
+    bool _drawerOpen = true;
+
+    MudTheme MyCustomTheme = new MudTheme()
+        {
+            Typography = new Typography()
+            {
+                Default = new Default()
+                {
+                    FontFamily = new[] {  "Speda"}
+                }
+            }
+        };
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}
